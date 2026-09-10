@@ -1,6 +1,6 @@
 --[[
-    Best Egg + Valor Estimado (estilo Lennon)
-    Base do script que você mandou + tabela de índice
+    Best Egg Hub - Top 6 (estilo Lennon)
+    Limpo e organizado
 ]]
 
 local Players = game:GetService("Players")
@@ -12,96 +12,28 @@ local UserInputService = game:GetService("UserInputService")
 local LocalPlayer = Players.LocalPlayer
 local Networking = ReplicatedStorage:FindFirstChild("Packages") and ReplicatedStorage.Packages:FindFirstChild("Networking")
 
--- ====================== TABELA DE VALORES BASE (ÍNDICE) ======================
--- Valores aproximados atualizados (setembro 2026). Tamanho multiplica em cima.
+-- ====================== TABELA DE VALORES ======================
 local PetIncome = {
-    -- Forest
-    ["Chicken"] = 1,
-    ["Dog"] = 2,
-    ["Bird"] = 8,
-    ["Owl"] = 35,
-    ["Raccoon"] = 45,
-    ["Fox"] = 180,
-    ["Bear"] = 240,
-    ["Brr Brr Patapim"] = 1800,
-
-    -- Lake
-    ["Frog"] = 3,
-    ["Duckling"] = 4,
-    ["Catfish"] = 12,
-    ["Turtle"] = 60,
-    ["Trulimero Trulicina"] = 260,
-    ["Swan"] = 320,
-    ["Axolotl"] = 2800,
-    ["Leviathan"] = 220000,
-
-    -- Desert
-    ["Jerboa"] = 6,
-    ["Fennec"] = 18,
-    ["Camel"] = 75,
-    ["Snake"] = 3600,
-    ["Scorpion"] = 18500,
-    ["Sand Spider"] = 16000,
-    ["Royal Sphinx"] = 280000,
-
-    -- Jungle
-    ["Toucan"] = 110,
-    ["Chimpanzee"] = 90,
-    ["Crocodile"] = 420,
-    ["Gorilla"] = 4800,
-    ["Orangutini Ananassini"] = 5500,
-    ["Spider"] = 22000,
-    ["Tiger"] = 28000,
-    ["King Snake"] = 3500000,
-
-    -- Snow
-    ["Penguin"] = 140,
-    ["Walrus"] = 600,
-    ["Polar Bear"] = 7000,
-    ["Sabertooth Tiger"] = 35000,
-    ["Mammoth"] = 42000,
-    ["King Mammoth"] = 400000,
-    ["Yeti"] = 5000000,
-    ["Ice Dragon"] = 65000000,
-
-    -- Volcano
-    ["Lava Frog"] = 850,
-    ["Flaming Bull"] = 9500,
-    ["Lava Iguana"] = 11000,
-    ["Chillin Chilli"] = 55000,
-    ["Cerberus"] = 8000000,
-    ["Phoenix"] = 85000000,
-    ["Lava Dragon"] = 100000000,
-
-    -- Abyss Ocean
-    ["Shark"] = 15000,
-    ["Orca"] = 80000,
-    ["Whale Shark"] = 700000,
-    ["Beluga Whale"] = 850000,
-    ["Kraken"] = 15000000,
-    ["El Maja"] = 130000000,
-
-    -- Prehistoric
-    ["Ankylosaurus"] = 120000,
-    ["T-Rex"] = 25000000,
-    ["TRex"] = 25000000,
-    ["Tralaledon"] = 32000000,
-    ["Mosasaurus"] = 180000000,
-    ["Bronto"] = 1500000,
-
-    -- Cosmic
-    ["Cosmic Dragon"] = 60000000,
-    ["Cosmic Skeleton Boss"] = 45000000,
-    ["Eternal Lunar Dragon"] = 250000000,
-    ["Unicorn"] = 1000000000,
-
-    -- Cherry Blossom / Titan
-    ["Stag"] = 145000000,
-    ["Oni Tiger"] = 600000000,
-    ["Kitsune"] = 1800000000,
-    ["Gorilla King"] = 880000000,
-    ["Nightflame"] = 3000000000,
-    ["Mutant Shark"] = 215000000,
+    ["Chicken"] = 1, ["Dog"] = 2, ["Bird"] = 8, ["Owl"] = 35, ["Raccoon"] = 45,
+    ["Fox"] = 180, ["Bear"] = 240, ["Brr Brr Patapim"] = 1800,
+    ["Frog"] = 3, ["Duckling"] = 4, ["Catfish"] = 12, ["Turtle"] = 60,
+    ["Trulimero Trulicina"] = 260, ["Swan"] = 320, ["Axolotl"] = 2800, ["Leviathan"] = 220000,
+    ["Jerboa"] = 6, ["Fennec"] = 18, ["Camel"] = 75, ["Snake"] = 3600,
+    ["Scorpion"] = 18500, ["Sand Spider"] = 16000, ["Royal Sphinx"] = 280000,
+    ["Toucan"] = 110, ["Chimpanzee"] = 90, ["Crocodile"] = 420, ["Gorilla"] = 4800,
+    ["Orangutini Ananassini"] = 5500, ["Spider"] = 22000, ["Tiger"] = 28000, ["King Snake"] = 3500000,
+    ["Penguin"] = 140, ["Walrus"] = 600, ["Polar Bear"] = 7000, ["Sabertooth Tiger"] = 35000,
+    ["Mammoth"] = 42000, ["King Mammoth"] = 400000, ["Yeti"] = 5000000, ["Ice Dragon"] = 65000000,
+    ["Lava Frog"] = 850, ["Flaming Bull"] = 9500, ["Lava Iguana"] = 11000, ["Chillin Chilli"] = 55000,
+    ["Cerberus"] = 8000000, ["Phoenix"] = 85000000, ["Lava Dragon"] = 100000000,
+    ["Shark"] = 15000, ["Orca"] = 80000, ["Whale Shark"] = 700000, ["Beluga Whale"] = 850000,
+    ["Kraken"] = 15000000, ["El Maja"] = 130000000,
+    ["Ankylosaurus"] = 120000, ["T-Rex"] = 25000000, ["TRex"] = 25000000,
+    ["Tralaledon"] = 32000000, ["Mosasaurus"] = 180000000, ["Bronto"] = 1500000,
+    ["Cosmic Dragon"] = 60000000, ["Cosmic Skeleton Boss"] = 45000000,
+    ["Eternal Lunar Dragon"] = 250000000, ["Unicorn"] = 1000000000,
+    ["Stag"] = 145000000, ["Oni Tiger"] = 600000000, ["Kitsune"] = 1800000000,
+    ["Gorilla King"] = 880000000, ["Nightflame"] = 3000000000, ["Mutant Shark"] = 215000000,
 }
 
 local RARITY_ORDER = {
@@ -141,21 +73,15 @@ local function formatValue(n)
 end
 
 local function getSizeMultiplier(egg)
-    -- Tenta pegar tamanho real do ovo
     local scale = egg.AssetScale or egg.Scale or egg.Size or egg.Weight
     if type(scale) == "number" and scale > 0 then
-        -- Multiplicador aproximado (tamanho maior = mais valor)
         return math.clamp(scale, 0.7, 4.0)
     end
-
     if egg.BoundsSize then
         local mag = egg.BoundsSize.Magnitude
-        if mag > 0 then
-            return math.clamp(mag / 8, 0.8, 3.5) -- ajuste fino
-        end
+        if mag > 0 then return math.clamp(mag / 8, 0.8, 3.5) end
     end
-
-    return 1.0 -- tamanho normal
+    return 1.0
 end
 
 local function getEggList(force)
@@ -198,9 +124,8 @@ local function getEggList(force)
                 local sizeMult = getSizeMultiplier(egg)
                 local estimated = base * sizeMult
 
-                -- Mutação básica (se existir)
                 if egg.BaseMutation or (type(egg.Mutations) == "table" and next(egg.Mutations)) then
-                    estimated = estimated * 1.8 -- média aproximada
+                    estimated = estimated * 1.8
                 end
 
                 table.insert(list, {
@@ -210,7 +135,6 @@ local function getEggList(force)
                     rank = RARITY_ORDER[rarity] or 0,
                     pos = pos,
                     value = estimated,
-                    sizeMult = sizeMult,
                     mutated = egg.BaseMutation or (type(egg.Mutations) == "table" and next(egg.Mutations) ~= nil)
                 })
             end
@@ -247,8 +171,8 @@ ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.Parent = (gethui and gethui()) or game:GetService("CoreGui")
 
 local Main = Instance.new("Frame")
-Main.Size = UDim2.fromOffset(280, 158)
-Main.Position = UDim2.new(0.5, -140, 0.12, 0)
+Main.Size = UDim2.fromOffset(280, 292)
+Main.Position = UDim2.new(0.5, -140, 0.08, 0)
 Main.BackgroundColor3 = Color3.fromRGB(16, 16, 20)
 Main.BorderSizePixel = 0
 Main.Parent = ScreenGui
@@ -257,6 +181,7 @@ local stroke = Instance.new("UIStroke", Main)
 stroke.Color = Color3.fromRGB(55, 55, 65)
 stroke.Thickness = 1
 
+-- Título
 local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(1, -16, 0, 20)
 Title.Position = UDim2.fromOffset(12, 8)
@@ -268,8 +193,9 @@ Title.TextXAlignment = Enum.TextXAlignment.Left
 Title.Text = "BEST EGG HUB"
 Title.Parent = Main
 
+-- Card do Melhor
 local BestCard = Instance.new("Frame")
-BestCard.Size = UDim2.new(1, -20, 0, 54)
+BestCard.Size = UDim2.new(1, -20, 0, 52)
 BestCard.Position = UDim2.fromOffset(10, 32)
 BestCard.BackgroundColor3 = Color3.fromRGB(26, 26, 32)
 BestCard.BorderSizePixel = 0
@@ -309,9 +235,74 @@ BestValue.TextXAlignment = Enum.TextXAlignment.Right
 BestValue.Text = "-"
 BestValue.Parent = BestCard
 
+-- Lista Top 2-6
+local ListFrame = Instance.new("Frame")
+ListFrame.Size = UDim2.new(1, -20, 0, 140)
+ListFrame.Position = UDim2.fromOffset(10, 92)
+ListFrame.BackgroundColor3 = Color3.fromRGB(22, 22, 28)
+ListFrame.BorderSizePixel = 0
+ListFrame.Parent = Main
+Instance.new("UICorner", ListFrame).CornerRadius = UDim.new(0, 8)
+
+local ListLayout = Instance.new("UIListLayout")
+ListLayout.Padding = UDim.new(0, 2)
+ListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+ListLayout.Parent = ListFrame
+
+local ListPadding = Instance.new("UIPadding")
+ListPadding.PaddingTop = UDim.new(0, 4)
+ListPadding.PaddingLeft = UDim.new(0, 8)
+ListPadding.PaddingRight = UDim.new(0, 8)
+ListPadding.Parent = ListFrame
+
+local RankLabels = {}
+for i = 1, 5 do
+    local row = Instance.new("Frame")
+    row.Size = UDim2.new(1, 0, 0, 24)
+    row.BackgroundTransparency = 1
+    row.LayoutOrder = i
+    row.Parent = ListFrame
+
+    local rank = Instance.new("TextLabel")
+    rank.Size = UDim2.fromOffset(22, 24)
+    rank.BackgroundTransparency = 1
+    rank.Font = Enum.Font.GothamBold
+    rank.TextSize = 12
+    rank.TextColor3 = Color3.fromRGB(120, 120, 140)
+    rank.TextXAlignment = Enum.TextXAlignment.Left
+    rank.Text = "#" .. (i + 1)
+    rank.Parent = row
+
+    local name = Instance.new("TextLabel")
+    name.Size = UDim2.new(0.55, -10, 1, 0)
+    name.Position = UDim2.fromOffset(26, 0)
+    name.BackgroundTransparency = 1
+    name.Font = Enum.Font.Gotham
+    name.TextSize = 12
+    name.TextColor3 = Color3.fromRGB(210, 210, 220)
+    name.TextXAlignment = Enum.TextXAlignment.Left
+    name.TextTruncate = Enum.TextTruncate.AtEnd
+    name.Text = "-"
+    name.Parent = row
+
+    local value = Instance.new("TextLabel")
+    value.Size = UDim2.new(0.35, 0, 1, 0)
+    value.Position = UDim2.new(0.65, 0, 0, 0)
+    value.BackgroundTransparency = 1
+    value.Font = Enum.Font.GothamBold
+    value.TextSize = 12
+    value.TextColor3 = Color3.fromRGB(90, 200, 130)
+    value.TextXAlignment = Enum.TextXAlignment.Right
+    value.Text = "-"
+    value.Parent = row
+
+    RankLabels[i] = {name = name, value = value}
+end
+
+-- Teleguiado
 local TeleFrame = Instance.new("Frame")
-TeleFrame.Size = UDim2.new(1, -20, 0, 44)
-TeleFrame.Position = UDim2.fromOffset(10, 96)
+TeleFrame.Size = UDim2.new(1, -20, 0, 40)
+TeleFrame.Position = UDim2.fromOffset(10, 242)
 TeleFrame.BackgroundColor3 = Color3.fromRGB(26, 26, 32)
 TeleFrame.BorderSizePixel = 0
 TeleFrame.Parent = Main
@@ -358,20 +349,39 @@ Instance.new("UICorner", LoopCircle).CornerRadius = UDim.new(1, 0)
 -- ====================== LÓGICA ======================
 local function updateUI()
     local list = getEggList(true)
+
     if #list == 0 then
         BestName.Text = "Nenhum ovo"
         BestValue.Text = "-"
         Config.CurrentTarget = nil
+        for i = 1, 5 do
+            RankLabels[i].name.Text = "-"
+            RankLabels[i].value.Text = "-"
+        end
         return
     end
 
+    -- Melhor
     local best = list[1]
     Config.CurrentTarget = best
-
     local name = best.petName
     if best.mutated then name = name .. " MUT" end
     BestName.Text = name
     BestValue.Text = formatValue(best.value)
+
+    -- Top 2 a 6
+    for i = 1, 5 do
+        local egg = list[i + 1]
+        if egg then
+            local n = egg.petName
+            if egg.mutated then n = n .. " MUT" end
+            RankLabels[i].name.Text = n
+            RankLabels[i].value.Text = formatValue(egg.value)
+        else
+            RankLabels[i].name.Text = "-"
+            RankLabels[i].value.Text = "-"
+        end
+    end
 end
 
 LoopBtn.MouseButton1Click:Connect(function()
@@ -423,4 +433,4 @@ UserInputService.InputChanged:Connect(function(input)
     end
 end)
 
-print("[Best Egg Hub] Carregado com tabela de valores!")
+print("[Best Egg Hub] Top 6 carregado!")
